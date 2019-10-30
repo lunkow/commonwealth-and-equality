@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    
+
+
+    <svg width="600" height="300" viewBox="-300 -300 600 300" xmlns="http://www.w3.org/2000/svg">
+        <path id="sector1" d="M-263 0 A 263 263, 0, 0, 1, 263 0" stroke="#002EFC" stroke-width="66" fill="none"/>
+           <!-- <circle cx="0" cy="0" r="10" fill="black"/> -->
+    </svg>
+    <script>
+
+        function transformation(){
+            var timeStart = performance.now();
+            console.log('start of transform');
+            var pathSector = document.getElementById("sector1");
+            var timeState = 3000;
+            // pathSector.setAttribute("stroke", "#E2E8FF");
+            pathSector.classList.add("rotating"); // с этого момента считается начало появления (3s - css)
+            setTimeout(function(){ pathSector.style.transitionDuration = '0s';}, 3000); // отсчёт времени появления (css)
+            setTimeout(function(){ pathSector.classList.remove("rotating");}, 3001);
+            setTimeout(function(){ pathSector.style.transitionDuration = '3s'; /* pathSector.setAttribute("stroke", "#002EFC");*/ console.log('end of transform');}, 3100);
+            // pathSector.style.transform()
+            // pathSector.style.transitionDuration = '3s';
+            var timeFinish = performance.now();
+
+            console.log(timeFinish - timeStart);
+            
+        }
+        // setTimeout(transformation, 3000);
+        // setTimeout(transformation, 1001);
+
+        // transformation();
+        setInterval(transformation,4000);
+        
+
+    </script>
+
+    <style>
+    svg path{
+        transform: rotate(-180deg);
+        transition-duration: 3s;
+        /* transition-timing-function: cubic-bezier(1, 0.82, 0.365, 1); */
+        /* transition-timing-function: cubic-bezier(.12,1,1,.01); */
+        transition-timing-function: linear;
+        
+    }
+    .rotating{
+        transform: rotate(180deg);
+    }
+    </style>
+</body>
+</html>
